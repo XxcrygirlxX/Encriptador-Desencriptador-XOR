@@ -1,13 +1,14 @@
+import random
+
+def xor (mensaje, llave):
+    return ''.join(chr(ord(m) ^ ord(l)) for m, l in zip(mensaje, llave))
+
 mensaje = "buenos dias mundo"
+llave = ''.join(str(random.randint(0, 1)) for _ in range(len(mensaje)))
+cifrado = xor(mensaje, llave)
+descifrado = xor(cifrado, llave)
 
-llave = [0, 1] * (len(mensaje) // 2 + 1)
-llave = llave[:len(mensaje)]
-
-def xor_encriptado_desencriptado (texto, key):
-    return ''.join(chr(ord(c) ^ k) for c, k in zip(texto, key))
-
-mensaje_cifrado = xor_encriptado_desencriptado(mensaje, llave)
-print("Mensaje cifrado:", mensaje_cifrado)
-
-mensaje_descifrado = xor_encriptado_desencriptado(mensaje_cifrado, llave)
-print("Mensaje descifrado:", mensaje_descifrado)
+print("Mensaje original:", mensaje)
+print("Llave:", llave)  
+print("Mensaje cifrado:", cifrado)
+print("Mensaje descifrado:", descifrado)
